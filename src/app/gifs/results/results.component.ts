@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { SearchService } from '../services/search.service';
+import { GifsService } from '../services/gifs.service';
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html'
 })
 export class ResultsComponent {
-  constructor(public searchService: SearchService) {}
 
-  
+  results: any;
+
+  get searchResults() {
+    return this.gifsService.searchResults;
+  }
+
+  constructor(public gifsService: GifsService) {}
+
 }

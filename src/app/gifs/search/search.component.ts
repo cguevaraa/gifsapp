@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
-import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +11,6 @@ export class SearchComponent {
   
   constructor(
     private gifsService: GifsService,
-    private searchService: SearchService
     ) {}
 
   search() {
