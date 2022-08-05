@@ -5,6 +5,7 @@ Manages the search history and the search results
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import connection from '../../connection/giphy.json' //Import here your own json with your (Giphy) API key
+import { Gif, SearchGIFResponse } from '../interfaces/gifs.interfaces';
 
 
 
@@ -18,15 +19,11 @@ export class GifsService {
 
 
   private _searchHistory: string[] = [];
-  public searchResults: any[] = []; //string[] = [];
+  public searchResults: Gif[] = [];
 
   get searchHistory() {
     return [...this._searchHistory];
   }
-
-  // get searchResults() {
-  //   return [...this._searchResults];
-  // }
 
   constructor(private http: HttpClient) {}
 
@@ -48,8 +45,8 @@ export class GifsService {
 
   updateResults(query: string) {
     const request = `${this._url}?api_key=${connection.key}&q=${query}&limit=${this._limit}`;
-    this.http.get(request)
-      .subscribe((res: any) => {
+    this.http.get<SearchGIFResponse>(request)
+      .subscribe((res) => {
       console.log(res.data);
       this.searchResults = res.data;
       });
