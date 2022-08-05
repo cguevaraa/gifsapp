@@ -3,8 +3,13 @@
     <hr class="text-white" >
 
   <div class="list-group list-reset">
-    <a class="list-group-item list-group-item-action"
-    *ngFor="let query of searchHistory">
+    <a 
+    *ngFor="let query of searchHistory"
+    (click)="search(query)"
+    href="#"
+    #historyQuery
+    class="list-group-item list-group-item-action"
+    >
       {{ query | titlecase }}
     </a>
   </div>
