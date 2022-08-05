@@ -20,8 +20,9 @@ export class GifsService {
   }
 
   constructor(private searchService: SearchService) {
-      // Fetch the search history from Local Storage or an empty array if it's null
+      // Fetch the search history and last images from Local Storage or an empty array if it's null
       this._searchHistory = JSON.parse(localStorage.getItem('history')!) || [];
+      this.searchResults = JSON.parse(localStorage.getItem('images')!) || [];
   }
 
   addToSearchHistory(query: string) {
@@ -31,7 +32,7 @@ export class GifsService {
 
       this._searchHistory.unshift(query);
       this._searchHistory = this._searchHistory.splice(0,10); //Keep only the last 10 entries
-      // Keep the history in Local Storage
+      // Keep the history
       localStorage.setItem('history', JSON.stringify(this._searchHistory));
 
     } else {
@@ -52,6 +53,8 @@ export class GifsService {
     this.searchService.search(query)
     .subscribe(res => {
       this.searchResults = res;
+      // Keep last images in Local Storage
+      localStorage.setItem('images', JSON.stringify(this.searchResults));
     });
   }
 }
