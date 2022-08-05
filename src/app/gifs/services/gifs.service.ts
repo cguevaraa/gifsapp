@@ -3,9 +3,8 @@ Manages the search history and the search results
 */
 
 import { Injectable } from '@angular/core';
-import { Gif, SearchGIFResponse } from '../interfaces/gifs.interfaces';
+import { Gif } from '../interfaces/gifs.interfaces';
 import { SearchService } from './search.service';
-
 
 
 @Injectable({
@@ -13,12 +12,8 @@ import { SearchService } from './search.service';
 })
 export class GifsService {
 
-  // private _url: string = 'https://api.giphy.com/v1/gifs/search';
-  // private _limit: number = 10;
-
-
   private _searchHistory: string[] = [];
-  public searchResults: Gif[] = [];
+  public searchResults: Gif[] = []; //Async property member (populated by SearchService)
 
   get searchHistory() {
     return [...this._searchHistory];
