@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html'
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent {
+  constructor(public searchService: SearchService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  
 }
