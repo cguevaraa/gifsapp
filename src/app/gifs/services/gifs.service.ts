@@ -19,7 +19,10 @@ export class GifsService {
     return [...this._searchHistory];
   }
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) {
+      // Fetch the search history from Local Storage or an empty array if it's null
+      this._searchHistory = JSON.parse(localStorage.getItem('history')!) || [];
+  }
 
   addToSearchHistory(query: string) {
 
@@ -28,7 +31,9 @@ export class GifsService {
 
       this._searchHistory.unshift(query);
       this._searchHistory = this._searchHistory.splice(0,10); //Keep only the last 10 entries
-    
+      // Keep the history in Local Storage
+      localStorage.setItem('history', JSON.stringify(this._searchHistory));
+
     } else {
 
       const index = this._searchHistory.indexOf(query);
