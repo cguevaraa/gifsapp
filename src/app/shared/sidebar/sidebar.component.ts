@@ -13,4 +13,9 @@ export class SidebarComponent {
     return this.gifsService.searchHistory;
   }
 
+  clearHistory() {
+    console.log('clear!');
+    this.gifsService.clearHistory();
+  }
+
 }

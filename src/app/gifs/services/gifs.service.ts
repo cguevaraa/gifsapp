@@ -13,7 +13,7 @@ import { SearchService } from './search.service';
 export class GifsService {
 
   private _searchHistory: string[] = [];
-  public searchResults: Gif[] = []; //Async property member (populated by SearchService)
+  public searchResults: Gif[] = []; // Async property member (populated by SearchService)
 
   get searchHistory() {
     return [...this._searchHistory];
@@ -26,7 +26,7 @@ export class GifsService {
 
   addToSearchHistory(query: string) {
 
-    //Controls what is being added to the search history and where
+    // Controls what is being added to the search history and its position in the list
     if (!this._searchHistory.includes(query)){
 
       this._searchHistory.unshift(query);
@@ -40,6 +40,11 @@ export class GifsService {
       this._searchHistory.splice(index, 1);
       this._searchHistory.unshift(query);    
     }
+  }
+
+  clearHistory() {
+    localStorage.clear();
+    window.location.reload();
   }
 
   updateResults(query: string) {

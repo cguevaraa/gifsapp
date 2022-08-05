@@ -8,4 +8,13 @@
       {{ query | titlecase }}
     </a>
   </div>
+
+  <div class="list-group list-reset p-3">
+    <button 
+      *ngIf="searchHistory.length > 0"
+      class="btn btn-secondary btn-sm" 
+      (click)="clearHistory()">
+        Clear History
+    </button>
+  </div>
 </div>
